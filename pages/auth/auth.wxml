@@ -1,0 +1,1 @@
+<button open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 允许此应用获取头像昵称信息</button>

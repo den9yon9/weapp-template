@@ -1,0 +1,3 @@
+<view class="container">
+  <view  bindtap="getUserInfo">{{userInfo.nickName||'佚名'}}</view>
+</view>
