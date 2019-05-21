@@ -8,6 +8,7 @@ Page({
   },
 
   async onLoad() {
+    await list()
     try {
       let { userInfo } = await getUserInfos(false)
       this.setData({

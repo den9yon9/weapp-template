@@ -13,5 +13,5 @@ export default async function genAccessToken() {
       prog_name: "default"
     }
   })
-  return res.data.data.access_token
+  return res.data.access_token
 }

@@ -23,15 +23,15 @@ export default async function request(config) {
           "Access-Token": AC
         }
       })
-      if (res.data.status === 'ok') {
-        return res.data.data
-      } else if (res.data.status === 'access_token_expired') {
+      if (res.status === 'ok') {
+        return res.data
+      } else if (res.status === 'access_token_expired') {
         console.log('access_token已过期')
         // 重新生成并设置AC
         await setAccessToken()
         return await request(config)
       } else {
-        throw new Error(res.data.message || res.data.status)
+        throw new Error(res.message || res.status)
       }
     }
   } catch (err) {

@@ -13,7 +13,7 @@ export default function ajax({
       header,
       success(res) {
         if (res.statusCode === 200) {
-          resolve(res)
+          resolve(res.data)
         } else {
           reject('statusCode:' + res.statusCode)
         }
