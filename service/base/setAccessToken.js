@@ -11,7 +11,7 @@ export default async function setAccessToken() {
     wx.setStorageSync(env.atKey, access_token)
     console.log('access_token已更新')
   } catch (err) {
-    wx.setStorageSync(env.atKey, null)
+    wx.removeStorageSync(env.atKey)
     console.log('更新access_token失败')
     throw '更新access_token失败:'+err
   }

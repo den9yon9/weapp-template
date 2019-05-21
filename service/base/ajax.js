@@ -18,10 +18,10 @@ export default function ajax({
           reject('statusCode:' + res.statusCode)
         }
       },
-      fail(err) {
-        reject(`请求失败:请检查网络`)
+      fail({errMsg}) {
+        reject(`${errMsg}:请求失败:请检查网络`)
       },
-      complete(err) {
+      complete() {
         wx.hideNavigationBarLoading()
       }
     })

@@ -5,19 +5,16 @@ import ajax from './ajax'
 
 export default async function request(config) {
   const AC = wx.getStorageSync(env.atKey)
-
-  if (AC === null) { // AC请求失败
-    console.log('获取access_token失败')
-  } else if (AC === '') { // 未请求过AC
-    await setAccessToken()
-    return await request(config)
-  } else if (AC === 'lock') { // AC请求中
-    console.log('等待access_token更新...')
-    // 500毫秒后再次请求
-    await wx.sleep(500)
-    return await request(config)
-  } else if (AC) { // AC 存在
-    try {
+  try {
+    if (AC === '') { // 未请求过AC,或请求AC失败
+      await setAccessToken()
+      return await request(config)
+    } else if (AC === 'lock') { // AC请求中
+      console.log('等待access_token更新...')
+      // 500毫秒后再次请求
+      await wx.sleep(500)
+      return await request(config)
+    } else if (AC) { // AC 存在
       let res = await ajax({
         method: config.method,
         url: env.domain + config.path,
@@ -34,11 +31,11 @@ export default async function request(config) {
         await setAccessToken()
         return await request(config)
       } else {
-        throw new Error(res.data.message||res.data.status)
+        throw new Error(res.data.message || res.data.status)
       }
-    } catch (err) {
-      await wx.showModalSync(err)
-      throw err
     }
+  } catch (err) {
+    wx.showModalSync(err)
+    throw new Error(err)
   }
 }
