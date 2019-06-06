@@ -31,11 +31,11 @@ export default async function request(config) {
         await setAccessToken()
         return await request(config)
       } else {
-        throw new Error(res.message || res.status)
+        throw new Error(`操作失败:${res.message || res.status}`)
       }
     }
   } catch (err) {
-    wx.showModalSync(err)
-    throw new Error(err)
+    wx.showModalSync(err.message)
+    throw err
   }
 }

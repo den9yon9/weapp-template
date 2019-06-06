@@ -15,11 +15,11 @@ export default function ajax({
         if (res.statusCode === 200) {
           resolve(res.data)
         } else {
-          reject('statusCode:' + res.statusCode)
+          reject(new Error(`请求错误:statusCode ${res.statusCode}`))
         }
       },
       fail({errMsg}) {
-        reject(`${errMsg}:请求失败:请检查网络`)
+        reject(new Error('请求失败'))
       },
       complete() {
         wx.hideNavigationBarLoading()

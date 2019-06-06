@@ -13,6 +13,6 @@ export default async function setAccessToken() {
   } catch (err) {
     wx.removeStorageSync(env.atKey)
     console.log('更新access_token失败')
-    throw '更新access_token失败:'+err
+    throw err
   }
 }
