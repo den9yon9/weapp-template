@@ -7,7 +7,7 @@ export default function wxLogin() {
         resolve(code)
       },
       fail({errMsg}) {
-        reject(errMsg)
+        reject(new Error(errMsg))
       }
     })
   })

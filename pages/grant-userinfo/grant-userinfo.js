@@ -1,22 +1,14 @@
 const app = getApp()
 Page({
-    data: {
-
-    },
-
-    onLoad: function (options) {
-
-    },
-
-    getUserInfo: function (e) {
+    getUserInfo (e) {
         if (e.detail.userInfo) {
-            app.globalData.infos = e.detail
+            app.globalData.userInfo = e.detail
             wx.navigateBack({
                 delta: 1
             })
-            app.getUserInfoCallback && app.getUserInfoCallback(app.globalData.infos)
+            app.getUserInfoCallback && app.getUserInfoCallback(app.globalData.userInfo)
         } else {
-            app.globalData.infos = false
+            app.globalData.userInfo = false
             wx.navigateBack({
                 delta: 1
             })

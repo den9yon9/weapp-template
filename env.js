@@ -4,7 +4,7 @@ if (debug) {
   var domain = "http://localhost:7001/ydqt/miniprogram";
   var atKey = "access_token";
 } else {
-  var domain = "https://39.105.93.142:7001/ydqt/miniprogram";
+  var domain = "http://39.105.93.142:7001/ydqt/miniprogram";
   var atKey = "online_access_token";
 }
 
