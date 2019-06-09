@@ -1,16 +1,16 @@
 import regeneratorRuntime from '../../utils/runtime.js'
-import getUserInfos from '../../utils/getUserInfos.js'
+import getUserInfo from '../../utils/getUserInfo.js'
 import { list } from '../../service/api.js'
-
+console.log(getUserInfo)
 Page({
   data: {
     userInfo: {}
   },
 
   async onLoad() {
-    await list()
+    // await list()
     try {
-      let { userInfo } = await getUserInfos(false)
+      let { userInfo } = await getUserInfo()
       this.setData({
         userInfo
       })
@@ -21,7 +21,7 @@ Page({
 
   async getUserInfo() {
     try {
-      let { userInfo } = await getUserInfos()
+      let { userInfo } = await getUserInfo()
       this.setData({
         userInfo
       })

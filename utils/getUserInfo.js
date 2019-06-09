@@ -1,7 +1,7 @@
 function askUserInfo({
   success,
   fail,
-  goToGrantOrNot = true
+  goToGrantOrNot
 }) {
   const app = getApp()
   if (app.globalData.userInfo) {
@@ -48,7 +48,7 @@ function askUserInfo({
 
 
 // 获取用户信息方法，不宜在app.js中使用此方法，因为会干扫扫码或进入分享页面的场景逻辑
-export default function getUserInfos(goToGrantOrNot = true) {
+export default function getUserInfo(goToGrantOrNot = true) {
   return new Promise((resolve, reject) => {
     askUserInfo({
       success: userInfo => {
