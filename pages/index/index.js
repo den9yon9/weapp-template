@@ -1,7 +1,6 @@
 import regeneratorRuntime from '../../utils/runtime.js'
 import getUserInfo from '../../utils/getUserInfo.js'
 import { list } from '../../service/api.js'
-console.log(getUserInfo)
 Page({
   data: {
     userInfo: {}

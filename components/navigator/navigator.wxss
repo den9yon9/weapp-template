@@ -1,0 +1,32 @@
+.loading-gif {
+  width: 46rpx;
+  height: 8rpx;
+}
+
+.loading-wrap {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.loading-wrap image {
+  background-color: transparent;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  top: 0;
+  position: fixed;
+  width: 100%;
+  z-index: 99999;
+}
+
+.header .header-title {
+  position: absolute;
+  left: 50%;
+  font-size: 38rpx;
+  transform: translateX(-50%);
+}

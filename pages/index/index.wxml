@@ -1,3 +1,4 @@
+<navigator title="主页" color="#fff"></navigator>
 <view class="container">
-  <view  bindtap="getUserInfo">{{userInfo.nickName||'佚名'}}</view>
+  <view bindtap="getUserInfo">{{userInfo.nickName||'佚名'}}</view>
 </view>
