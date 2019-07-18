@@ -26,7 +26,6 @@ Component({
         titleBarHeight: app.globalData.titleBarHeight
       });
     } else {
-      let that = this
       wx.getSystemInfo({
         success: res => {
           if (!app.globalData) {
@@ -38,13 +37,13 @@ Component({
             app.globalData.titleBarHeight = 48
           }
           app.globalData.statusBarHeight = res.statusBarHeight
-          that.setData({
+          this.setData({
             statusBarHeight: app.globalData.statusBarHeight,
             titleBarHeight: app.globalData.titleBarHeight
           });
         },
         fail: err => {
-          that.setData({
+          this.setData({
             statusBarHeight: 0,
             titleBarHeight: 0
           });

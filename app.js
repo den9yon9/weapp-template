@@ -1,4 +1,3 @@
-// import regeneratorRuntime from './utils/runtime.js'
 import env from 'env.js'
 import setAccessToken from './service/base/setAccessToken'
 import init from './utils/init.js'

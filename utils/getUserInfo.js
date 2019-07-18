@@ -14,7 +14,7 @@ function askUserInfo({
     askUserInfo({
       success,
       fail,
-      auth
+      goToGrantOrNot
     })
   } else if (app.globalData.userInfo === null) {
     // 未知用户是否授权
