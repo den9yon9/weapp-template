@@ -21,7 +21,8 @@ export default async function request(config) {
         data: config.data,
         header: {
           "Access-Token": AC
-        }
+        },
+        isUpload: config.isUpload
       })
       if (res.status === 'ok') {
         return res.data
