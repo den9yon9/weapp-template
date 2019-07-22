@@ -20,6 +20,7 @@ export default async function request(config) {
         url: env.domain + config.path,
         data: config.data,
         header: {
+          ...config.header,
           "Access-Token": AC
         },
         isUpload: config.isUpload
