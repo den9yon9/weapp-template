@@ -48,26 +48,4 @@ export default function init(wx) {
         })
       })
     }
-
-    wx.uploadFileSync = function ({
-      url,
-      filePath,
-      name = 'file',
-      formData
-    }) {
-      return new Promise((resolve, reject) => {
-        wx.uploadFile({
-          url,
-          filePath,
-          name,
-          formData,
-          success(res) {
-            resolve(res.data)
-          },
-          fail(err) {
-            reject(err)
-          }
-        })
-      })
-    }
 }
