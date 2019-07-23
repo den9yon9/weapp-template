@@ -7,7 +7,6 @@ Page({
   },
   location: null,
 
-
   async onLoad() {
 
   },
@@ -15,7 +14,7 @@ Page({
   async onShow() {
     // 确保更新权限后能重新获取位置信息
     if(this.location === null){
-      this.location = await wx.getLocationSync()
+      this.location = await wx.getLocationSync(false)
       if(this.location){
         console.log(this.location)
       }

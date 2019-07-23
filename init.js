@@ -103,7 +103,7 @@ export default function init(wx) {
     })
   }
 
-  function getLocation() {
+  function getLocation(noticeMsg ='需要使用您的位置信息，是否重新授权') {
     return new Promise((resolve, reject) => {
       wx.getSetting({
         success(res) {
@@ -120,9 +120,13 @@ export default function init(wx) {
               }
             })
           } else if (res.authSetting['scope.userLocation'] === false) { // 拒绝授权
+            if(noticeMsg === false){
+              resolve(null)
+              return
+            }
             wx.showModal({
               title: '授权请求',
-              content: '需要使用您的位置信息，是否重新授权',
+              content: noticeMsg,
               success: ({
                 confirm
               }) => {
@@ -142,10 +146,14 @@ export default function init(wx) {
     })
   }
 
-  wx.getLocationSync = async function() {
+  wx.getLocationSync = async function (noticeMsg) {
+    /**
+     * noticeMsg: string | boolean
+     * string: 授权提示语 | boolean: false(不提示，不跳转，默默成功，默默失败)
+     */
     let location = null
     try {
-      location = await getLocation()
+      location = await getLocation(noticeMsg)
     } catch ({message}) {
       wx.showToast({
         title: message,
