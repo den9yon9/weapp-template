@@ -28,13 +28,38 @@
 			"current": -1,
 			"list": []
 		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
 		"game": {
 			"currentL": -1,
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
-			"list": []
+			"current": 2,
+			"list": [
+				{
+					"id": -1,
+					"name": "授权用户信息",
+					"pathName": "pages/grant-userinfo/grant-userinfo",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "授权设置",
+					"pathName": "pages/open-setting/open-setting",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "我的",
+					"pathName": "pages/mine/mine",
+					"scene": null
+				}
+			]
 		}
 	}
 }

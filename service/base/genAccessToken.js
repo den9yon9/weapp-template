@@ -1,4 +1,4 @@
-import regeneratorRuntime from '../../utils/runtime.js'
+import regeneratorRuntime from '../../lib/runtime.js'
 import wxLogin from './wxLogin'
 import ajax from'./ajax'
 import env from '../../env.js'

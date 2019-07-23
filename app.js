@@ -1,6 +1,6 @@
 import env from 'env.js'
 import setAccessToken from './service/base/setAccessToken'
-import init from './utils/init.js'
+import init from './init.js'
 
 App({
   onLaunch() {
@@ -14,8 +14,5 @@ App({
     })
   },
 
-  globalData: {
-    userInfo: null
-  }
-
+  globalData: {}
 })

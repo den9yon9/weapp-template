@@ -1,4 +1,4 @@
-import regeneratorRuntime from '../../utils/runtime.js'
+import regeneratorRuntime from '../../lib/runtime.js'
 import env from "../../env.js"
 import setAccessToken from './setAccessToken'
 import ajax from './ajax'

@@ -1,31 +1,33 @@
-import regeneratorRuntime from '../../utils/runtime.js'
-import getUserInfo from '../../utils/getUserInfo.js'
+import regeneratorRuntime from '../../lib/runtime.js'
 import { list } from '../../service/api.js'
+
 Page({
   data: {
-    userInfo: {}
+
   },
+  location: null,
+
 
   async onLoad() {
-    // await list()
-    try {
-      let { userInfo } = await getUserInfo()
-      this.setData({
-        userInfo
-      })
-    } catch (err) {
-      console.log(err)
+
+  },
+
+  async onShow() {
+    // 确保更新权限后能重新获取位置信息
+    if(this.location === null){
+      this.location = await wx.getLocationSync()
+      if(this.location){
+        console.log(this.location)
+      }
     }
   },
 
-  async getUserInfo() {
-    try {
-      let { userInfo } = await getUserInfo()
-      this.setData({
-        userInfo
-      })
-    } catch (err) {
-      console.log(err)
+  async refreshLocation() {
+    // 刷新位置信息
+    this.location = await wx.getLocationSync()
+    if(this.location){
+      console.log(this.location)
     }
   }
+
 })
