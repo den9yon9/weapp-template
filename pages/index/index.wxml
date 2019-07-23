@@ -1,2 +1,7 @@
 <navigation title="主页"></navigation>
-<view class="container" bindtap="refreshLocation">更新位置</view>
+<view class="container">
+  <view bindtap="refreshLocation">更新位置</view>
+  <view class="phone" wx:if="{{userInfo&&!userInfo.phone}}">
+    <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">确定</button>
+  </view>
+</view>

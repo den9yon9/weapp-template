@@ -3,12 +3,14 @@ import { list } from '../../service/api.js'
 
 Page({
   data: {
-
+    userInfo: null
   },
   location: null,
 
   async onLoad() {
-
+    /**
+     * TODO: 查询用户信息，设置用户信息与手机号码，以供判断是否展示请求授权手机弹框
+     */
   },
 
   async onShow() {
@@ -19,6 +21,13 @@ Page({
         console.log(this.location)
       }
     }
+  },
+
+  getPhoneNumber(e) {
+    let { encryptedData, iv } = e.detail
+    /**
+     * TODO:  调用后端接口绑定用户手机号码
+     */
   },
 
   async refreshLocation() {
