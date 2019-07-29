@@ -1,5 +1,4 @@
-<navigation title="我的"></navigation>
 <view class="container">
   <button open-type="getUserInfo" bindgetuserinfo="getUserInfo" hover-class="none" wx:if="{{userInfo===null}}">微信登陆</button>
-  <view>{{userInfo.nickName}}</view>
+  <view wx:if="{{userInfo&&userInfo.nickName}}">{{userInfo&&userInfo.nickName}}</view>
 </view>

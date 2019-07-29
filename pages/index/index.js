@@ -3,7 +3,9 @@ import { list } from '../../service/api.js'
 
 Page({
   data: {
-    userInfo: null
+    userInfo: null,
+    datepickerVisible: true,
+    value: ['2019-10-11', '2020-01-12']
   },
   location: null,
 
@@ -36,6 +38,12 @@ Page({
     if(this.location){
       console.log(this.location)
     }
+  },
+
+  showDatepicker(){
+    this.setData({
+      datepickerVisible: true
+    })
   }
 
 })

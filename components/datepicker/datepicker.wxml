@@ -1,0 +1,47 @@
+<wxs module="genClass">
+  module.exports = function(date, mode, selected) {
+    var timestamp = date.timestamp
+    if (mode === 'date') {
+      if (timestamp == selected.timestamp) return 'active';
+    } else if (mode === 'range') {
+      var startDate = selected[0]
+      var endDate = selected[1]
+      if (!endDate) {
+        if (timestamp === startDate.timestamp) return 'active';
+      } else {
+        if (timestamp === startDate.timestamp) {
+          return 'active left-edge'
+        } else if (timestamp === endDate.timestamp) {
+          return 'active right-edge'
+        }
+        if (startDate.timestamp <= timestamp && timestamp <= endDate.timestamp) return 'active';
+      }
+    }
+  }
+</wxs>
+<view class="datepicker-container" wx:if="{{visible}}">
+  <!-- <view class="days">
+    <view class="day" wx:for="{{days}}" wx:for-item="day">{{day}}</view>
+  </view> -->
+  <view class="datepicker">
+    <view class="months">
+      <view class="month" wx:for="{{months}}" wx:for-item="month">
+        <view class="month-title">{{month.yearNumber}}年{{month.monthNumber}}月</view>
+        <view class="days">
+          <view class="day" wx:for="{{days}}" wx:for-item="day">{{day}}</view>
+        </view>
+        <view class="dates">
+          <view class="date" style="height: 0" wx:for="{{month.startDayNumber}}"></view>
+          <view class="date {{date.disabled&&'disabled'}} {{genClass(date, mode, selected)}}" wx:for="{{month.dates}}" wx:for-item="date" bindtap="selectDate" data-date="{{date}}">
+            <text class="today" wx:if="{{date.timestamp===todayTimestamp}}">今天</text>
+            <text wx:else>{{date.dateNumber}}</text>
+          </view>
+          <view class="date" style="height: 0" wx:for="{{6}}"></view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="action">
+    <button class="confirm" catchtap="confirm">确定</button>
+  </view>
+</view>

@@ -1,2 +1,1 @@
-<navigation title="授权设置"></navigation>
 <button open-type="openSetting" bindopensetting="getSetting">前往授权设置页</button>
