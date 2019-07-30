@@ -25,8 +25,7 @@
 }
 
 .header .header-title {
-  position: absolute;
-  left: 50%;
-  font-size: 38rpx;
-  transform: translateX(-50%);
+  font-size: 36rpx;
+  font-weight: 600;
+  margin-left: 30rpx;
 }
