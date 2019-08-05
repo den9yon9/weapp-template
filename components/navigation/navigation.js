@@ -6,10 +6,15 @@ Component({
       type: String,
       default: '首页'
     },
-    // 表头字体颜色
+    // 导航栏字体颜色
     color: {
       type: String,
       default: '#000'
+    },
+    // 导航栏背景色
+    bgColor: {
+      type: String,
+      default: 'transparent'
     }
   },
 

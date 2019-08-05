@@ -6,12 +6,16 @@ export default function ajax({
   isUpload = false
 }) {
   return new Promise((resolve, reject) => {
-    wx.showNavigationBarLoading()
+    
     if (isUpload) {
+      wx.showLoading({
+        title: '上传中...',
+        mask: true
+      })
       wx.uploadFile({
         url,
         filePath: data.filePath,
-        name: data.name,
+        name: data.name || 'file',
         formData: data.formData,
         header,
         success(res) {
@@ -25,10 +29,11 @@ export default function ajax({
           reject(new Error('请求失败'))
         },
         complete() {
-          wx.hideNavigationBarLoading()
+          wx.hideLoading()
         }
       })
     } else {
+      wx.showNavigationBarLoading()
       wx.request({
         method,
         data,

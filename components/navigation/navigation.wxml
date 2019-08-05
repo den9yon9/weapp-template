@@ -1,5 +1,7 @@
-<view style="height:{{titleBarHeight}}px;padding-top:{{statusBarHeight}}px;box-sizing: content-box">
-  <view class="header" style="height:{{titleBarHeight}}px;padding-top:{{statusBarHeight}}px;box-sizing: content-box">
-    <view class="header-title" style="color: {{color}}"><slot></slot></view>
+<view style="height:{{titleBarHeight}}px;padding-top:{{statusBarHeight}}px;box-sizing: content-box;">
+  <view class="header" style="height:{{titleBarHeight}}px;padding-top:{{statusBarHeight}}px;box-sizing: content-box;background-color:{{bgColor}}">
+    <view class="header-title" style="color: {{color}}">
+      <slot></slot>
+    </view>
   </view>
 </view>
