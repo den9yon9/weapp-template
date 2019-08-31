@@ -1,7 +1,28 @@
-<view style="height:{{titleBarHeight}}px;padding-top:{{statusBarHeight}}px;box-sizing: content-box;">
-  <view class="header" style="height:{{titleBarHeight}}px;padding-top:{{statusBarHeight}}px;box-sizing: content-box;background-color:{{bgColor}}">
+<view style="height:{{titleBarHeight}}px;padding-top:{{statusBarHeight}}px;box-sizing: content-box">
+  <view class="header" style="height:{{titleBarHeight}}px;padding-top:{{statusBarHeight}}px;box-sizing: content-box">
     <view class="header-title" style="color: {{color}}">
-      <slot></slot>
+      <view wx:if="{{showBack}}" class="back {{(color=='white'||color=='#fff'||color=='#FFF')?'back-white':'back-black'}}" bindtap="back"></view>
+      <view class="title" style="{{genStyle(showBack, justify)}}">
+        <slot></slot>
+      </view>
     </view>
   </view>
 </view>
+
+<wxs module="genStyle">
+  module.exports = function(showBack, justify) {
+    if (showBack) {
+      if (justify === 'center') {
+        return 'text-align: center;transform: translateX(-21rpx);'
+      } else {
+        return 'text-align: left;'
+      }
+    } else {
+      if (justify === 'center') {
+        return 'text-align: center;'
+      } else {
+        return 'text-align: left;'
+      }
+    }
+  }
+</wxs>

@@ -3,27 +3,32 @@ Component({
   properties: {
     //小程序页面的表头
     title: {
-      type: String,
-      default: '首页'
+      type: String
     },
-    // 导航栏字体颜色
+    // 表头字体颜色
     color: {
       type: String,
-      default: '#000'
+      value: '#000'
     },
-    // 导航栏背景色
-    bgColor: {
+    // 表头水平方向
+    justify: {
       type: String,
-      default: 'transparent'
+      value: 'center'
     }
   },
 
   data: {
     statusBarHeight: 0,
     titleBarHeight: 0,
+    showBack: false,
+    justify: 'center'
   },
 
   ready() {
+    let pages = getCurrentPages()
+    this.setData({
+      showBack: Boolean(pages.length-1)
+    })
     // 因为很多地方都需要用到，所有保存到全局对象中
     if (app.globalData && app.globalData.statusBarHeight && app.globalData.titleBarHeight) {
       this.setData({
@@ -58,6 +63,10 @@ Component({
   },
 
   methods: {
-
+    back(){
+      wx.navigateBack({
+        delta: 1
+      })
+    }
   }
 })
