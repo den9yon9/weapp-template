@@ -4,7 +4,7 @@ import { list } from '../../service/api.js'
 Page({
   data: {
     userInfo: null,
-    datepickerVisible: true,
+    datepickerVisible: false,
     value: ['2019-10-11', '2020-01-12']
   },
   location: null,

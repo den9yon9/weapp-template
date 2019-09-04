@@ -14,20 +14,25 @@ Component({
     justify: {
       type: String,
       value: 'center'
+    },
+    // 是否展示返回按钮
+    showBack: {
+      type: Boolean,
+      value: true
     }
   },
 
   data: {
     statusBarHeight: 0,
     titleBarHeight: 0,
-    showBack: false,
+    isFirstPage: false,
     justify: 'center'
   },
 
   ready() {
     let pages = getCurrentPages()
     this.setData({
-      showBack: Boolean(pages.length-1)
+      isFirstPage: !Boolean(pages.length-1)
     })
     // 因为很多地方都需要用到，所有保存到全局对象中
     if (app.globalData && app.globalData.statusBarHeight && app.globalData.titleBarHeight) {

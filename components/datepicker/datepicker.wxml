@@ -21,7 +21,7 @@
 </wxs>
 
 <view class="datepicker-container" wx:if="{{visible}}">
-  <navigation>选择日期</navigation>
+  <navigation showBack="{{false}}">选择日期</navigation>
   <!-- <view class="days">
     <view class="day" wx:for="{{days}}" wx:for-item="day">{{day}}</view>
   </view> -->

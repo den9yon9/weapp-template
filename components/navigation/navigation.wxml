@@ -1,8 +1,8 @@
 <view style="height:{{titleBarHeight}}px;padding-top:{{statusBarHeight}}px;box-sizing: content-box">
   <view class="header" style="height:{{titleBarHeight}}px;padding-top:{{statusBarHeight}}px;box-sizing: content-box">
     <view class="header-title" style="color: {{color}}">
-      <view wx:if="{{showBack}}" class="back {{(color=='white'||color=='#fff'||color=='#FFF')?'back-white':'back-black'}}" bindtap="back"></view>
-      <view class="title" style="{{genStyle(showBack, justify)}}">
+      <view wx:if="{{showBack&&!isFirstPage}}" class="back {{(color=='white'||color=='#fff'||color=='#FFF')?'back-white':'back-black'}}" bindtap="back"></view>
+      <view class="title" style="{{genStyle(showBack, isFirstPage, justify)}}">
         <slot></slot>
       </view>
     </view>
@@ -10,8 +10,8 @@
 </view>
 
 <wxs module="genStyle">
-  module.exports = function(showBack, justify) {
-    if (showBack) {
+  module.exports = function(showBack, isFirstPage,  justify) {
+    if (showBack&&!isFirstPage) {
       if (justify === 'center') {
         return 'text-align: center;transform: translateX(-21rpx);'
       } else {
