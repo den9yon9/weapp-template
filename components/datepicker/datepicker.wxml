@@ -19,31 +19,29 @@
     }
   }
 </wxs>
-
-<view class="datepicker-container" wx:if="{{visible}}">
-  <navigation showBack="{{false}}">选择日期</navigation>
-  <!-- <view class="days">
-    <view class="day" wx:for="{{days}}" wx:for-item="day">{{day}}</view>
-  </view> -->
-  <view class="datepicker">
-    <view class="months">
-      <view class="month" wx:for="{{months}}" wx:for-item="month">
-        <view class="month-title">{{month.yearNumber}}年{{month.monthNumber}}月</view>
-        <view class="days">
-          <view class="day" wx:for="{{days}}" wx:for-item="day">{{day}}</view>
-        </view>
-        <view class="dates">
-          <view class="date" style="height: 0" wx:for="{{month.startDayNumber}}"></view>
-          <view class="date {{date.disabled&&'disabled'}} {{genClass(date, mode, selected)}}" wx:for="{{month.dates}}" wx:for-item="date" bindtap="selectDate" data-date="{{date}}">
-            <text class="today" wx:if="{{date.timestamp===todayTimestamp}}">今天</text>
-            <text wx:else>{{date.dateNumber}}</text>
+<view class="mask {{visible?'show-mask': 'hide-mask'}}" bindtap="hideMask">
+  <view class="datepicker-container {{visible?'show-datepicker':'hide-datepicker'}}" catchtap>
+    <view class="datepicker">
+      <view class="months">
+        <view class="month" wx:for="{{months}}" wx:for-item="month" wx:key="{{month.yearNumber+month.monthNumber}}">
+          <view class="month-title">{{month.yearNumber}}年{{month.monthNumber}}月</view>
+          <view class="days">
+            <view class="day" wx:for="{{days}}" wx:for-item="day" wx:key="*this">{{day}}</view>
           </view>
-          <view class="date" style="height: 0" wx:for="{{6}}"></view>
+          <view class="dates">
+            <view class="date" style="height: 0" wx:for="{{month.startDayNumber}}" wx:key="*this"></view>
+            <view class="date {{date.disabled&&'disabled'}} {{genClass(date, mode, selected)}}" wx:for="{{month.dates}}" wx:key="{{date.date}}" wx:for-item="date" bindtap="selectDate" data-date="{{date}}">
+              <text class="today" wx:if="{{date.timestamp===todayTimestamp}}">今天</text>
+              <text wx:else>{{date.dateNumber}}</text>
+              <text class="desc" wx:if="{{descs&&descs[date.date]}}">{{descs[date.date].desc}}</text>
+            </view>
+            <view class="date" style="height: 0" wx:for="{{6}}" wx:key="*this"></view>
+          </view>
         </view>
       </view>
     </view>
-  </view>
-  <view class="action">
-    <button class="confirm" catchtap="confirm">确定</button>
+    <view class="action">
+      <button class="confirm" catchtap="confirm">确定</button>
+    </view>
   </view>
 </view>

@@ -1,8 +1,16 @@
 Component({
   properties: {
+    monthCnt: {
+      type: Number,
+      value: 5
+    },
     value: {
       type: Object,
       optionalTypes: [String, Array, Number],
+      observer() {
+        this.genMonths()
+        this.initDates()
+      }
     }, // Date、[Date, Date]  Date,时间戳，时间字符串等能被格式化为时间对象的格式
     disabled: {
       type: Object // { from: Date, to: Date}  Date,时间戳，时间字符串等能被格式化为时间对象的格式
@@ -10,6 +18,12 @@ Component({
     visible: {
       type: Boolean,
       value: false
+    },
+    descs: {
+      type: Object,
+      observer() {
+        this.genMonths()
+      }
     }
   },
 
@@ -27,30 +41,29 @@ Component({
   },
 
   attached() {
-    this.genMonths()
-    if (this.data.value) {
-      if (!Array.isArray(this.data.value)) {
-        let selected = this.findDate(this.data.value)
-        this.setData({
-          mode: 'date',
-          selected
-        })
-      } else {
-        let selected = this.data.value.map(this.findDate.bind(this))
-        this.setData({
-          mode: 'range',
-          selected
-        })
-      }
-    }
-
     this.setData({
       todayTimestamp: this.genTodayTimestamp()
     })
-    console.log(this.data.todayTimestamp)
   },
 
   methods: {
+    initDates() {
+      if (this.data.value) {
+        if (!Array.isArray(this.data.value)) {
+          let selected = this.findDate(this.data.value)
+          this.setData({
+            mode: 'date',
+            selected
+          })
+        } else {
+          let selected = this.data.value.map(this.findDate.bind(this))
+          this.setData({
+            mode: 'range',
+            selected
+          })
+        }
+      }
+    },
     genTodayTimestamp() {
       let today = new Date()
       let yearNumber = today.getFullYear()
@@ -62,10 +75,16 @@ Component({
 
     confirm() {
       if (this.data.mode === 'range') {
+        if(this.data.selected.length===1)return wx.toast('请选择结束日期');
         this.triggerEvent('change', this.data.selected.map(date => new Date(date.timestamp)))
       } else if (this.data.mode === 'date') {
         this.triggerEvent('change', new Date(this.data.selected.timestamp))
       }
+      this.setData({
+        visible: false
+      })
+    },
+    hideMask(){
       this.setData({
         visible: false
       })
@@ -107,7 +126,7 @@ Component({
       }
     },
     // 生成月信息列表
-    genMonths(monthCnt = 13) {
+    genMonths(monthCnt = this.data.monthCnt) {
       let months = []
       let startYearNumber = new Date().getFullYear()
       let startMonthNumber = new Date().getMonth() + 1
@@ -168,6 +187,7 @@ Component({
         yearNumber,
         monthNumber,
         dateNumber,
+        date: `${this.formatNumber(yearNumber)}-${this.formatNumber(monthNumber)}-${this.formatNumber(dateNumber)}`,
         value,
         timestamp: value.getTime(),
         disabled: this.genDisabled(value)

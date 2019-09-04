@@ -163,4 +163,11 @@ export default function init(wx) {
       return location
     }
   }
+
+  wx.toast = function (title) {
+    wx.showToast({
+      title,
+      icon: 'none'
+    })
+  }
 }

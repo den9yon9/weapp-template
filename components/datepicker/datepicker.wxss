@@ -1,24 +1,59 @@
-.datepicker-container {
+.mask {
     width: 100%;
     height: 100%;
-    background: #f8f8f8;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 100000;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.show-mask {
+    background: rgba(255, 255, 2552, 0.5);
+    transition: all 0.3s
+}
+
+.hide-mask {
+    background: rgba(0, 0, 0, 0);
+    transition: all 0.3s;
+    pointer-events: none;
+}
+
+.datepicker-container {
+    width: 100%;
+    height: 80vh;
     box-shadow: 0 0 20rpx 0 rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
     position: fixed;
-    top: 0;
+    bottom: 0;
     left: 0;
     z-index: 100000
 }
 
+.show-datepicker {
+    bottom: 0;
+    transition: 0.3s;
+}
+
+.hide-datepicker {
+    bottom: -80vh;
+    transition: 0.3s;
+}
+
 .datepicker {
+    border-radius: 20rpx 20rpx 4rpx 4rpx;
     width: 100%;
     overflow: scroll;
     flex-grow: 1;
+    background: #f8f8f8;
 }
 
-.month{
-  background-color: #fff;
+.month {
+    background-color: #fff;
+    margin-bottom: 30rpx;
 }
 
 .days {
@@ -36,7 +71,6 @@
     font-size: 36rpx;
     color: #666;
     padding: 30rpx 0;
-    margin-top: 30rpx;
     text-align: center;
 }
 
@@ -59,12 +93,16 @@
     align-items: center;
 }
 
-.today{
+.today {
     color: #2eb6aa
 }
 
-.active .today{
-  color: #fff
+.active .today {
+    color: #fff
+}
+
+.disabled .today {
+    color: #ccc;
 }
 
 .active {
@@ -98,4 +136,5 @@
 .confirm {
     font-size: 30rpx;
     color: #2EB6AA;
+    background-color: #fff;
 }
