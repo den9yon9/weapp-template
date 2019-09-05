@@ -111,8 +111,9 @@ Component({
             selected: [selected]
           })
         } else {
-          let date1 = startDate || endDate
+          let date1 = startDate
           let date2 = selected
+          if(date1.date===date2.date)return;
           this.setData({
             selected: [date1, date2].sort((date1, date2) => {
               return new Date(date1.timestamp) - new Date(date2.timestamp)
