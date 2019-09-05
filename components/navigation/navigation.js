@@ -13,7 +13,7 @@ Component({
     // 表头水平方向
     justify: {
       type: String,
-      value: 'center'
+      value: 'left'
     },
     // 是否展示返回按钮
     showBack: {
