@@ -4,6 +4,10 @@ Component({
       type: Number,
       value: 5
     },
+    notice: {
+      type: Array,
+      value: ['入住', '离店']
+    },
     value: {
       type: Object,
       optionalTypes: [String, Array, Number],
@@ -75,7 +79,7 @@ Component({
 
     confirm() {
       if (this.data.mode === 'range') {
-        if(this.data.selected.length===1)return wx.toast('请选择结束日期');
+        if (this.data.selected.length === 1) return wx.toast('请选择结束日期');
         this.triggerEvent('change', this.data.selected.map(date => new Date(date.timestamp)))
       } else if (this.data.mode === 'date') {
         this.triggerEvent('change', new Date(this.data.selected.timestamp))
@@ -84,7 +88,7 @@ Component({
         visible: false
       })
     },
-    hideMask(){
+    hideMask() {
       this.setData({
         visible: false
       })
@@ -113,7 +117,7 @@ Component({
         } else {
           let date1 = startDate
           let date2 = selected
-          if(date1.date===date2.date)return;
+          if (date1.date === date2.date) return;
           this.setData({
             selected: [date1, date2].sort((date1, date2) => {
               return new Date(date1.timestamp) - new Date(date2.timestamp)

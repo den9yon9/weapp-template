@@ -6,7 +6,9 @@
     } else if (mode === 'range') {
       var startDate = selected[0]
       var endDate = selected[1]
-      if (!endDate) {
+      if(!startDate&&!endDate){
+        return ''
+      }else if (!endDate) {
         if (timestamp === startDate.timestamp) return 'active';
       } else {
         if (timestamp === startDate.timestamp) {
@@ -34,6 +36,8 @@
               <text class="today" wx:if="{{date.timestamp===todayTimestamp}}">今天</text>
               <text wx:else>{{date.dateNumber}}</text>
               <text class="desc" wx:if="{{descs&&descs[date.date]}}">{{descs[date.date].desc}}</text>
+              <text class="notice" wx:if="{{notice&&selected[0].date==date.date}}">{{notice[0]}}</text>
+              <text class="notice" wx:if="{{notice&&selected[1].date==date.date}}">{{notice[1]}}</text>
             </view>
             <view class="date" style="height: 0" wx:for="{{6}}" wx:key="*this"></view>
           </view>
