@@ -13,5 +13,6 @@ export default async function genAccessToken() {
       prog_name: "default"
     }
   })
+  if(res.status!=='ok')throw new Error(res.message)
   return res.data.access_token
 }

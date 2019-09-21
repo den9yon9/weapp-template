@@ -43,7 +43,7 @@ export default function ajax({
           if (res.statusCode === 200) {
             resolve(res.data)
           } else {
-            reject(new Error(`请求错误:statusCode ${res.statusCode}`))
+            reject(new Error(`错误:statusCode ${res.statusCode}`))
           }
         },
         fail({
