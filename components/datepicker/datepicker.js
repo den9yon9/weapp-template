@@ -2,7 +2,7 @@ Component({
   properties: {
     monthCnt: {
       type: Number,
-      value: 5
+      value: 12
     },
     notice: {
       type: Array,
@@ -96,13 +96,19 @@ Component({
     // 给定一个Date对象寻找对应的那一天的日期信息对象
     findDate(date) {
       date = new Date(date) // 因为date可以传Date对象，日期字符串，时间戳等可以转换成日期对象的数据类型，所以这里需要统一转换成日期对象
-      let yearNumber = date.getFullYear()
-      let monthNumber = date.getMonth() + 1
-      let dateNumber = date.getDate()
-      let yearMatchedMonths = this.data.months.filter(month => month.yearNumber === yearNumber)
-      let monthMatched = yearMatchedMonths.find(month => month.monthNumber === monthNumber)
-      let dateMatched = monthMatched.dates.find(date => date.dateNumber === dateNumber)
-      return dateMatched
+      try {
+        let yearNumber = date.getFullYear()
+        let monthNumber = date.getMonth() + 1
+        let dateNumber = date.getDate()
+        let yearMatchedMonths = this.data.months.filter(month => month.yearNumber === yearNumber)
+        let monthMatched = yearMatchedMonths.find(month => month.monthNumber === monthNumber)
+
+        let dateMatched = monthMatched.dates.find(date => date.dateNumber === dateNumber)
+        return dateMatched
+      } catch (err) {
+        wx.showModalSync(`所选日期${date}超出当前日期范围`, { showCancel: false })
+        throw new Error(`所选日期${date}超出当前日期范围`)
+      }
     },
     // 选择日期
     selectDate(e) {
