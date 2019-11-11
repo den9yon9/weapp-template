@@ -37,7 +37,43 @@ export default async function request(config) {
       }
     }
   } catch (err) {
+    // 收集错误信息
+    let error = {
+      page: getCurrentPages()[0].route, // 报错的页面
+      // 报错接口信息
+      config: {
+        method: config.method,
+        url: env.domain + config.path,
+        data: config.data,
+        isUpload: config.idUpload,
+        headers: {
+          ...config.header,
+          openid: AC,
+          hotelid: wx.encrypt(hotel_id),
+          sign
+        },
+      },
+      // 错误信息
+      message: err.message,
+      time: Date()
+    }
+
+    // 报告错误到后台日志
+    errorReport(error)
+
     wx.showModalSync(err.message)
     throw err
   }
+}
+
+function errorReport(error) {
+  // 提交错误信息给后台保存日志
+  ajax({
+    method: 'POST',
+    url: 'https://xxxx.com/errorReport/log',
+    data: { log: error, logtype: 'weapp' },
+    header: {
+      sign
+    }
+  })
 }
